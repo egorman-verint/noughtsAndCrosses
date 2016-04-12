@@ -5,4 +5,4 @@ Next Steps:
 3. Decide on technologies to use for solution
 4. Design and model solution
 
-Keyboard order:  Neil, Hassan, Chris, Mark, James, Eddie
+Keyboard order:  Neil, Chris, Mark, James, Eddie
