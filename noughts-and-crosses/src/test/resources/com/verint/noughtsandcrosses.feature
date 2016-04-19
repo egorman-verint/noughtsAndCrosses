@@ -1,10 +1,8 @@
 Feature: Noughts and Crosses Game
-
+  @development
   Scenario: Start New Game
-    Given "New Game" button exists
-    When the "New Game" button is clicked
-    Then I will see an empty board
-    And the scoreboard will show "Player One 0 Player Two 0 Draws 0"
+  When a New Game is started
+  Then the game board is empty
 
   Scenario Outline: Player makes a move
     Given a new game is started
@@ -33,7 +31,7 @@ Feature: Noughts and Crosses Game
       | "One"  | "X"    | "3"      | "Player One has won!" | "Player One 1 Player Two 0 Draws 0" |
       | "Two"  | "O"    | "6"      | "Player Two has won!" | "Player One 0 Player Two 1 Draws 0" |
 
-  @development
+
   Scenario Outline: Game is a draw
     Given the board shows
       | X | X | O |

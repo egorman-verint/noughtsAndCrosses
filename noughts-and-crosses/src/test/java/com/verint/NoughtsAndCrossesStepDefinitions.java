@@ -9,13 +9,18 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.thoughtworks.selenium.webdriven.commands.IsEditable;
+
 import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.*;
 
 public class NoughtsAndCrossesStepDefinitions {
 	private final static int WAIT_TIMEOUT = 2;
+	private NoughtsAndCrosses game;
 
 	@When("^the \"([^\"]*)\" button is clicked$")
 	public void clickButton(String buttonName) {
@@ -112,6 +117,24 @@ public class NoughtsAndCrossesStepDefinitions {
 	@Given("^there is a game in progress$")
 	public void checkGameInProgress() {
 	    // Write code here that turns the phrase above into concrete actions
+	}
+	
+	
+	
+	
+	
+	@When("^a New Game is started$")
+	public void aNewGameIsStarted() throws Throwable {
+	    game = new NoughtsAndCrosses();
+	}
+
+	@Then("^the game board is empty$")
+	public void theGameBoardIsEmpty() throws Throwable {
+	    String[] gameBoard = game.getGameBoard();
+	    assertThat(gameBoard.length, is(9));
+	    for(int i=0; i<gameBoard.length; i++){
+	    	assertThat(gameBoard[i], is(""));
+	    }
 	}
 
 

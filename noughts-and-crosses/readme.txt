@@ -1,7 +1,6 @@
 Next Steps:
 
-1. Decide on technologies to use for solution
-2. Design and model solution
-3 Implement
+1. 1st Scenario - should also test what player's turn it is.
+2. Investigate Angular JS
 
-Keyboard order: Hassan, Eddie, Chris,Neil, James, Mark
+Keyboard order: Neil, James, Hassan, Eddie, Chris, Mark
