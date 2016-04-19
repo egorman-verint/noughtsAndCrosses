@@ -6,12 +6,11 @@ Feature: Noughts and Crosses Game
     Then I will see an empty board
     And the scoreboard will show "Player One 0 Player Two 0 Draws 0"
 
-	
   Scenario Outline: Player makes a move
-    Given a new game is started 
+    Given a new game is started
     And it is player <Player>s turn
-    When I click on cell "1"
-    Then an <Marker> will appear in cell "1"
+    When they click on cell "1"
+    Then a <Marker> will appear in cell "1"
 
     Examples: 
       | Player | Marker |
@@ -19,44 +18,51 @@ Feature: Noughts and Crosses Game
       | "Two"  | "O"    |
 
   Scenario Outline: Player has won
-    Given player <Player>s move has been completed
-    When that player <Player> has three markers in a line
-    Then show notification saying <Message>
+    Given the board shows
+      | X | X | * |
+      | O | O | * |
+      | X | O | * |
+    And it is player <Player>s turn
+    When they click on cell <Position>
+    Then a <Marker> will appear in cell <Position>
+    And a notification saying <Message> should appear
     And the scoreboard will show <ScoreboardMessage>
 
     Examples: 
-      | Player | Message               | ScoreboardMessage                   |
-      | "One"  | "Player One has won!" | "Player One 1 Player Two 0 Draws 0" |
-      | "Two"  | "Player Two has won!" | "Player One 0 Player Two 1 Draws 0" |
+      | Player | Marker | Position | Message               | ScoreboardMessage                   |
+      | "One"  | "X"    | "3"      | "Player One has won!" | "Player One 1 Player Two 0 Draws 0" |
+      | "Two"  | "O"    | "6"      | "Player Two has won!" | "Player One 0 Player Two 1 Draws 0" |
 
+  @development
   Scenario Outline: Game is a draw
-    Given player <Player>s move has been completed
-    When that player <Player> has not got three markers in a line
+    Given the board shows
+      | X | X | O |
+      | O | O | X |
+      | X | * | O |
+    And it is player "One"s turn
+    When they click on cell "8"
+    Then a "X" will appear in cell "8"
     And there is no empty cell
-    Then show notification saying "Game is a draw"
+    And a notification saying "Game is a draw" should appear
     And the scoreboard will show "Player One 0 Player Two 0 Draws 1"
 
-    Examples: 
-      | Player |
-      | "One"  |
-      | "Two"  |
-
-  Scenario: Player tries to place marker on populated cell
-    When a player selects a cell that is already populated
-    Then show notification saying "Invalid Move"
+  Scenario Outline: Player tries to place marker on populated cell
+    Given the board shows
+      | X | * | * |
+      | * | * | * |
+      | * | * | * |
+    And it is player "One"s turn
+    When they click on cell "1"
+    Then a notification saying "Invalid move" should appear
 
   Scenario Outline: Player forfeits game
-    Given there is a game in progress
+    Given a new game is started
     And it is player <Player>s turn
     When the "Restart Game" button is clicked
-    Then show notification saying <NotificationMessage>
+    Then a notification saying <NotificationMessage> should appear
     And the scoreboard will show <ScoreboardMessage>
 
     Examples: 
       | Player | ScoreboardMessage                   | NotificationMessage             |
       | "One"  | "Player One 0 Player Two 1 Draws 0" | "Player One has ended the game" |
       | "Two"  | "Player One 1 Player Two 0 Draws 0" | "Player Two has ended the game" |
-      
-   @development
-   Scenario: abcde
-   given i write a test

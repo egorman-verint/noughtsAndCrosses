@@ -1,5 +1,7 @@
 package com.verint;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +9,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -46,27 +49,42 @@ public class NoughtsAndCrossesStepDefinitions {
 		// Write code here that turns the phrase above into concrete actions
 	}
 
-	@Then("^an \"([^\"]*)\" will appear in cell \"([^\"]*)\"$")
+	@Then("^a \"([^\"]*)\" will appear in cell \"([^\"]*)\"$")
 	public void placeMarkerInCell(String marker, String cellNumber) {
 		// Write code here that turns the phrase above into concrete actions
 	}
 
-	@When("^I click on cell \"([^\"]*)\"$")
+	@When("^they click on cell \"([^\"]*)\"$")
 	public void clickCell(String cellNumber) {
 		// Write code here that turns the phrase above into concrete actions
 	}
 
-	@Given("^player \"([^\"]*)\"s move has been completed$")
-	public void checkPlayerHasCompletedMove(String playerNumber) {
-	    // Write code here that turns the phrase above into concrete actions
+	@Given("^the board shows$")
+	public void the_board_shows(DataTable gameboard) throws Throwable {
+	   List<List<String>> data = gameboard.raw();
+	   
+	   String a1 = data.get(0).get(0);
+	   String a2 = data.get(0).get(1);
+	   String a3 = data.get(0).get(2);
+	   String b1 = data.get(1).get(0);
+	   String b2 = data.get(1).get(1);
+	   String b3 = data.get(1).get(2);
+	   String c1 = data.get(2).get(0);
+	   String c2 = data.get(2).get(1);
+	   String c3 = data.get(2).get(2);
+	   
+	   System.out.println(a1 + a2 + a3);
+	   System.out.println(b1 + b2 + b3);
+	   System.out.println(c1 + c2 + c3);
 	}
+
 
 	@When("^that player \"([^\"]*)\" has three markers in a line$")
 	public void checkPlayerHasThreeMarkersInLine(String playerNumber) {
 		// Write code here that turns the phrase above into concrete actions
 	}
 	
-	@Then("^show notification saying \"([^\"]*)\"$")
+	@Then("^a notification saying \"([^\"]*)\" should appear$")
 	public void showNotification(String notificationMessage) {
 	    // Write code here that turns the phrase above into concrete actions
 	}

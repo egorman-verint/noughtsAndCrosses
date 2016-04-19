@@ -1,8 +1,7 @@
 Next Steps:
 
+1. Decide on technologies to use for solution
+2. Design and model solution
+3 Implement
 
-2. Refactor each test with setup state
-3. Decide on technologies to use for solution
-4. Design and model solution
-
-Keyboard order:  Neil, Chris, Mark, James, Eddie
+Keyboard order: Hassan, Eddie, Chris,Neil, James, Mark
