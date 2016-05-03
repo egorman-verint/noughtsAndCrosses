@@ -1,6 +1,6 @@
 Next Steps:
 
-1. Refactor methods player makes a move and it is players turn
-2. Investigate Angular JS
+1. Refactor board setup to use a single list
+3. Investigate Angular JS
 
-Keyboard order:  Neil, Eddie, Chris, Mark James, Hassan
+Keyboard order:   Mark, Eddie, Chris, Neil, Hassan

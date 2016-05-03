@@ -8,13 +8,13 @@ Feature: Noughts and Crosses Game
   @development
   Scenario: Player One makes a move
   Given a New Game is started by player "one"
-  And Player "one" makes a move
+  And they place "X" in cell "1"
   Then it is player "two"s turn
   
   @development
   Scenario: Player Two makes a move
   Given a New Game is started by player "two"
-  And Player "two" makes a move
+  And they place "O" in cell "1"
   Then it is player "one"s turn
   
   @development 
@@ -34,8 +34,51 @@ Feature: Noughts and Crosses Game
   Given a New Game is started by player "one"
   And it is player "one"s turn
   And they place "X" in cell "1"
-  And Player "one" makes a move
   And it is player "two"s turn
   And they place "O" in cell "1"
   Then cell "1" will contain the marker "X"
+  And it is player "two"s turn
+  
+  @development
+  Scenario: Player one wins
+  Given a New Game is started by player "one" 
+  And it is player "one"s turn
+  And the board shows
+      | O | X |   |
+      | O | X |   |
+      |   |   |   |
+  And it is player "one"s turn
+  And they place "X" in cell "8"
+  Then player "one" wins
+  And Game is over
+  
+ 
+  
+  @development
+  Scenario: Player two wins
+  Given a New Game is started by player "two" 
+  And it is player "two"s turn
+  And the board shows
+      | O | X |   |
+      | O | X |   |
+      |   |   |   |
+  And it is player "two"s turn
+  And they place "O" in cell "7"
+  Then player "two" wins
+  And Game is over
+  
+  @development
+  Scenario: Game is in play
+  Given a New Game is started by player "two" 
+  And it is player "two"s turn
+  And the board shows
+      | O | X |   |
+      | O | X |   |
+      |   |   |   |
+  And it is player "two"s turn
+  And they place "O" in cell "8"
+  Then it is player "one"s turn
+  And Game is in progress
+
+
   
