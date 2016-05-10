@@ -1,6 +1,7 @@
 Next Steps:
 
-1. Refactor board setup to use a single list
+1. Write method for diagonals and draw
+2. Refactor for map
 3. Investigate Angular JS
 
-Keyboard order:   Mark, Eddie, Chris, Neil, Hassan
+Keyboard order:  Neil, Hassan, Mark, Eddie, Chris

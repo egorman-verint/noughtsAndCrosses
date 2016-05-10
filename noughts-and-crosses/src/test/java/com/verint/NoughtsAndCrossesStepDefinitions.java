@@ -66,40 +66,21 @@ public class NoughtsAndCrossesStepDefinitions {
 	public void the_board_shows(DataTable gameboard) throws Throwable {
 		List<List<String>> data = gameboard.raw();
 
+		String whostarted = game.getNextTurn();
+		
 		int counter = 0;
 		for (int row = 0; row < 3; row++) {
 			for (int col = 0; col < 3; col++) {
-				if (data.get(row).get(col).equals("X") || data.get(row).get(col).equals("O")) {
+				String cellValue = data.get(row).get(col);
+				if (cellValue.equals("X") || cellValue.equals("O")) {
 					counter++;
 				}
+				String cellNumber = String.valueOf((row*3) + (col+1));
+				System.out.println("cellvalue : " + cellValue + " - cellNumber: " +  cellNumber);
+				game.placeMarkerInCellLocation(cellValue, cellNumber);
 			}
 		}
 
-		String a1 = data.get(0).get(0);
-		String a2 = data.get(0).get(1);
-		String a3 = data.get(0).get(2);
-		String b1 = data.get(1).get(0);
-		String b2 = data.get(1).get(1);
-		String b3 = data.get(1).get(2);
-		String c1 = data.get(2).get(0);
-		String c2 = data.get(2).get(1);
-		String c3 = data.get(2).get(2);
-
-		/*System.out.println(a1 + a2 + a3);
-		System.out.println(b1 + b2 + b3);
-		System.out.println(c1 + c2 + c3);*/
-
-		String whostarted = game.getNextTurn();
-
-		game.placeMarkerInCellLocation(a1, "1");
-		game.placeMarkerInCellLocation(a2, "2");
-		game.placeMarkerInCellLocation(a3, "3");
-		game.placeMarkerInCellLocation(b1, "4");
-		game.placeMarkerInCellLocation(b2, "5");
-		game.placeMarkerInCellLocation(b3, "6");
-		game.placeMarkerInCellLocation(c1, "7");
-		game.placeMarkerInCellLocation(c2, "8");
-		game.placeMarkerInCellLocation(c3, "9");
 
 		if (counter % 2 == 0) {
 			game.setPlayerTurn(whostarted);
