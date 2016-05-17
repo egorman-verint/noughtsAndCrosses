@@ -20,11 +20,11 @@ public class NoughtsAndCrosses {
 		return gameBoard;
 	}
 
-	public String getNextTurn() {
+	public String getCurrentTurn() {
 		return currentTurn;
 	}
 
-	private void makePlayerTurn(String marker) {
+	private void updateCurrentTurn(String marker) {
 		if (marker.equals("X")) {
 			currentTurn = "two";
 		} else {
@@ -37,34 +37,42 @@ public class NoughtsAndCrosses {
 		if (gameBoard[markerValue].equals("")) {
 			gameBoard[markerValue] = marker;
 			determineGameState(marker);
-			makePlayerTurn(marker);
+			updateCurrentTurn(marker);
 		}
 	}
 
 	private void determineGameState(String marker) {
 		if (!marker.equals("")) {
-			checkColumns(marker);
-			checkRows(marker);
-			checkDiagonals(marker);
+			checkIsGameWon(marker);
 		}
 		if (!gameWon) {
-			gameDrawn = true;
-			for (int i = 0; i < 9; i++) {
-				if (gameBoard[i].equals("")) {
-					gameDrawn = false;
-					break;
-				}
-			}
-
-			if (gameDrawn) {
-				gameWinner = "draw";
-			}
+			checkIsGameDraw();
 		}
-		
-		if(gameWon){
+
+		if (gameWon) {
 			gameWinner = currentTurn;
 		}
-		
+
+	}
+
+	private void checkIsGameWon(String marker) {
+		checkColumns(marker);
+		checkRows(marker);
+		checkDiagonals(marker);
+	}
+
+	private void checkIsGameDraw() {
+		gameDrawn = true;
+		for (int i = 0; i < 9; i++) {
+			if (gameBoard[i].equals("")) {
+				gameDrawn = false;
+				break;
+			}
+		}
+
+		if (gameDrawn) {
+			gameWinner = "draw";
+		}
 	}
 
 	private void checkColumns(String marker) {
@@ -88,7 +96,8 @@ public class NoughtsAndCrosses {
 	private void checkDiagonals(String marker) {
 		if (marker.equals(gameBoard[2]) && marker.equals(gameBoard[4]) && marker.equals(gameBoard[6])) {
 			gameWon = true;
-		} else if (marker.equals(gameBoard[0]) && marker.equals(gameBoard[4]) && marker.equals(gameBoard[8])) {
+		} else if (marker.equals(gameBoard[0]) && marker.equals(gameBoard[4])
+				&& marker.equals(gameBoard[8])) {
 			gameWon = true;
 		}
 

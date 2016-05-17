@@ -38,7 +38,7 @@ public class NoughtsAndCrossesStepDefinitions {
 
 	@Then("^it is player \"([^\"]*)\"s turn$")
 	public void isPlayersTurn(String player) {
-		assertThat(game.getNextTurn(), is(player));
+		assertThat(game.getCurrentTurn(), is(player));
 	}
 
 	@When("^they place \"([^\"]*)\" in cell \"([^\"]*)\"$")
@@ -66,7 +66,7 @@ public class NoughtsAndCrossesStepDefinitions {
 	public void the_board_shows(DataTable gameboard) throws Throwable {
 		List<List<String>> data = gameboard.raw();
 
-		String whostarted = game.getNextTurn();
+		String whostarted = game.getCurrentTurn();
 		
 		int counter = 0;
 		for (int row = 0; row < 3; row++) {
