@@ -130,3 +130,42 @@ Feature: Noughts and Crosses Game
     And they place "O" in cell "9"
     Then player "two" wins
     And Game is over
+    
+    @development
+    Scenario: Player one wins in a top right to bottom left diagonal
+    Given a New Game is started by player "one"
+    And it is player "one"s turn
+    And the board shows
+      |   | O | X |
+      |   |   |   |
+      | X | O |   |
+    And it is player "one"s turn
+    And they place "X" in cell "5"
+    Then player "one" wins
+    And Game is over
+    
+    @development
+    Scenario: Player one wins in a top left to bottom right diagonal
+    Given a New Game is started by player "one"
+    And it is player "one"s turn
+    And the board shows
+      | X | O |   |
+      |   | X |   |
+      |   | O |   |
+    And it is player "one"s turn
+    And they place "X" in cell "9"
+    Then player "one" wins
+    And Game is over
+    
+    @development
+    Scenario: Player one places the ninth marker and game is a draw
+    Given a New Game is started by player "one"
+    And it is player "one"s turn
+    And the board shows
+      | X | X | O |
+      | O | X |   |
+      | X | O | O |
+    And it is player "one"s turn
+    And they place "X" in cell "6"
+    Then Game is a draw
+    And Game is over

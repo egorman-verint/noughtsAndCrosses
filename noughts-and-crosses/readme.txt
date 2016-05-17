@@ -1,7 +1,7 @@
 Next Steps:
 
-1. Write method for diagonals and draw
-2. Refactor for map
-3. Investigate Angular JS
+1. Show/Tell Hassan's Angular tic tac toe
+2. Investigate Angular JS 
+3. Build UI for game engine
 
-Keyboard order:  Neil, Hassan, Mark, Eddie, Chris
+Keyboard order: Eddie, Chris, Neil, Hassan, Mark

@@ -95,8 +95,13 @@ public class NoughtsAndCrossesStepDefinitions {
 	}
 	
 	@Then("^Game is in progress$")
-	public void gameIsInProgress() throws Throwable {
+	public void gameIsInProgress() {
 	    assertThat(game.hasEnded(), is(false));
+	}
+	
+	@Then("^Game is a draw$")
+	public void gameIsADraw() {
+	    assertThat(game.getWinner(), is("draw"));
 	}
 
 }
